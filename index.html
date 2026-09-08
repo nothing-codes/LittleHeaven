@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     index.html  ·  "Little Haven" — English project website
+     Deploy on Vercel: put this file at project root → `vercel deploy`
+     (static site, no build step, no config needed)
+     ============================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Haven — room by room</title>
+<meta name="description" content="A description of my flat for my English class — lounge, kitchen, bathroom and a cosy reading corner.">
+<link rel="icon" href="favicon.ico"> <!-- замените на свой favicon -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@latest/latin-400.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@latest/latin-500.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@latest/latin-700.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@latest/latin-800.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@latest/latin-500.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@latest/latin-700.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F2EC;
+  --bg-soft:#EFEAE1;
+  --card:#FFFFFF;
+  --ink:#1A1917;
+  --muted:#6E6961;
+  --line:rgba(26,25,23,.12);
+  --sage:#7E9276;
+  --sage-deep:#5F7358;
+  --clay:#C97C5D;
+  --clay-deep:#A85F42;
+  --mustard:#D9A13B;
+  --blue:#7D97A6;
+  --plum:#96798B;
+  --r-lg:26px;
+  --r-md:16px;
+  --shadow:0 18px 44px -22px rgba(26,25,23,.28);
+  --font-head:"Space Grotesk",system-ui,sans-serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--mustard);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(245,242,236,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{display:flex;align-items:center;gap:28px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--font-head);font-weight:700;font-size:18px;letter-spacing:-.02em;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:var(--ink);color:#F5F2EC;display:grid;place-items:center;border-radius:9px;transition:transform .35s cubic-bezier(.2,.9,.3,1.4)}
+.logo-mark img{display:block;width:100%;height:100%;object-fit:cover;border-radius:9px}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.06)}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{
+  text-decoration:none;font-size:14px;font-weight:700;color:var(--muted);
+  padding:9px 14px;border-radius:999px;transition:.25s;
+}
+.nav a:hover{color:var(--ink);background:rgba(26,25,23,.06)}
+.nav a.active{color:#fff;background:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 64px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:stretch}
+.overline{
+  display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--clay-deep);
+  background:rgba(201,124,93,.12);padding:8px 16px;border-radius:999px;margin-bottom:26px;
+}
+.overline::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--clay)}
+h1{
+  font-family:var(--font-head);font-weight:700;letter-spacing:-.035em;
+  font-size:clamp(42px,6vw,74px);line-height:1.02;
+}
+h1 em{font-style:normal;color:var(--sage-deep);position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:12px;background:rgba(217,161,59,.35);z-index:-1;border-radius:3px}
+.lead{margin-top:24px;font-size:18px;color:var(--muted);max-width:46ch}
+.cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;
+  font-weight:800;font-size:15px;padding:15px 26px;border-radius:999px;border:none;transition:.28s;
+}
+.btn-dark{background:var(--ink);color:#F5F2EC;box-shadow:0 14px 30px -14px rgba(26,25,23,.5)}
+.btn-dark:hover{transform:translateY(-3px);background:#000}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-3px)}
+.btn .arr{transition:transform .28s}
+.btn:hover .arr{transform:translateY(3px)}
+
+/* hero media */
+.hero-media{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow);min-height:480px;
+}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.hero-media:hover img{transform:scale(1.05)}
+.hero-media .cap{
+  position:absolute;left:16px;bottom:16px;background:rgba(26,25,23,.72);color:#F5F2EC;
+  font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  padding:9px 16px;border-radius:999px;backdrop-filter:blur(6px);
+}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--ink);color:#F5F2EC;overflow:hidden;padding:16px 0;transform:rotate(-1.1deg) scale(1.02);margin:26px 0}
+.marquee-track{display:flex;gap:0;width:max-content;animation:slide 26s linear infinite}
+.marquee span{font-family:var(--font-head);font-weight:500;font-size:15px;letter-spacing:.24em;text-transform:uppercase;padding:0 22px;white-space:nowrap}
+.marquee span i{font-style:normal;color:var(--mustard);margin-left:44px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:88px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.sec-tag{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sec-tag::before{content:"";width:26px;height:2px;background:var(--clay)}
+h2{font-family:var(--font-head);font-weight:700;letter-spacing:-.03em;font-size:clamp(30px,4vw,46px);line-height:1.08}
+.sec-note{max-width:38ch;color:var(--muted);font-size:15px}
+
+/* room cards */
+.room{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);margin-bottom:34px;
+  border:1px solid var(--line);
+}
+.room:nth-child(even) .room-media{order:2}
+.room-media{position:relative;min-height:380px;overflow:hidden}
+.room-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.room:hover .room-media img{transform:scale(1.05)}
+.room-badge{
+  position:absolute;top:18px;left:18px;z-index:2;width:52px;height:52px;border-radius:14px;
+  display:grid;place-items:center;font-family:var(--font-head);font-weight:700;font-size:18px;color:#fff;
+}
+.room-body{padding:46px 48px;display:flex;flex-direction:column;gap:18px;justify-content:center}
+.room-kicker{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.room-body h3{font-family:var(--font-head);font-size:30px;letter-spacing:-.02em;font-weight:700}
+.room-body p{color:var(--muted);font-size:16px}
+.room-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.rtag{font-size:12px;font-weight:800;padding:7px 13px;border-radius:999px;background:var(--bg-soft);color:var(--ink)}
+
+/* vocab marks — always softly highlighted */
+mark.vw{
+  background:rgba(217,161,59,.30);
+  color:inherit;font-weight:800;border-radius:6px;padding:1px 6px;margin:-1px -2px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+
+/* ---------- write-up ---------- */
+.essay-wrap{max-width:880px;margin:0 auto}
+.essay{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:56px 60px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.essay::before{content:"“";position:absolute;top:-30px;right:34px;font-family:var(--font-head);font-size:220px;color:rgba(126,146,118,.14);line-height:1}
+.essay h3{font-family:var(--font-head);font-size:26px;letter-spacing:-.02em;margin-bottom:22px}
+.essay p{margin-bottom:16px;font-size:17px;color:#3a3833}
+.essay p:last-child{margin-bottom:0}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#F5F2EC;padding:64px 0 40px;margin-top:40px}
+.foot-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:center}
+.foot-grid h5{font-family:var(--font-head);font-size:26px;letter-spacing:-.02em;font-weight:700;max-width:22ch;line-height:1.2}
+.foot-bottom{margin-top:48px;padding-top:22px;border-top:1px solid rgba(245,242,236,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:rgba(245,242,236,.45)}
+.foot-social{display:flex;gap:12px;align-items:center}
+.foot-social a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(245,242,236,.1);transition:background .25s,transform .25s;color:#F5F2EC;text-decoration:none}
+.foot-social a:hover{background:rgba(245,242,236,.2);transform:translateY(-2px)}
+.foot-social svg{width:18px;height:18px;fill:currentColor}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-media{min-height:340px}
+  .room{grid-template-columns:1fr}
+  .room:nth-child(even) .room-media{order:0}
+  .room-media{min-height:280px}
+  .essay{padding:38px 30px}
+}
+@media(max-width:640px){
+  .nav{display:none}
+  .room-body{padding:32px 26px}
+  section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ TOP BAR ══════════ -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark">
+        <img src="logo.png" alt="Little Haven logo"> <!-- ✅ логотип -->
+      </span>
+      Little Haven <!-- ✅ название исправлено -->
+    </a>
+    <nav class="nav" id="mainNav">
+      <a href="#tour">The tour</a>
+      <a href="#writeup">Write-up</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="overline reveal">Little Haven · a home tour</span>
+      <h1 class="reveal d1">A small flat with a <em>big heart</em>.</h1>
+      <p class="lead reveal d2">
+        Two rooms, one kitchen, one bathroom — and everything in its own place.
+        Welcome to Little Haven: bright, tidy and completely mine. Come in, take off your shoes,
+        and let me show you around, room by room.
+      </p>
+      <div class="cta-row reveal d3">
+        <a class="btn btn-dark" href="#tour">Take the tour <span class="arr">↓</span></a>
+        <a class="btn btn-ghost" href="#writeup">Read the write-up</a>
+      </div>
+    </div>
+    <div class="hero-media reveal d2">
+      <img src="https://image.qwenlm.ai/public_source/cb414d29-8955-44b0-a0b7-d46dadc7791c/1cb7e3851-dcfe-48f5-81e9-f5f8dba0ab9a.png" alt="The lounge of Little Haven: a grey settee, a comfy chair and a beige carpet in morning light">
+      <span class="cap">The lounge · morning light</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>carpet<i>◆</i></span><span>comfy chair<i>◆</i></span><span>microwave<i>◆</i></span><span>settee<i>◆</i></span><span>shower<i>◆</i></span><span>laundry basket<i>◆</i></span><span>lounge<i>◆</i></span><span>tap<i>◆</i></span><span>sink<i>◆</i></span>
+    <span>carpet<i>◆</i></span><span>comfy chair<i>◆</i></span><span>microwave<i>◆</i></span><span>settee<i>◆</i></span><span>shower<i>◆</i></span><span>laundry basket<i>◆</i></span><span>lounge<i>◆</i></span><span>tap<i>◆</i></span><span>sink<i>◆</i></span>
+  </div>
+</div>
+
+<!-- ══════════ THE TOUR ══════════ -->
+<section id="tour">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-tag">01 — The tour</div>
+        <h2>Four corners of home.</h2>
+      </div>
+      <p class="sec-note">Every room has its own mood, its own colour and its own favourite object. Here they are.</p>
+    </div>
+
+    <article class="room reveal" id="room-lounge">
+      <div class="room-media">
+        <span class="room-badge" style="background:var(--sage)">01</span>
+        <img loading="lazy" src="https://image.qwenlm.ai/public_source/cb414d29-8955-44b0-a0b7-d46dadc7791c/1cb7e3851-dcfe-48f5-81e9-f5f8dba0ab9a.png" alt="The lounge: a grey settee, a mustard comfy chair and a beige carpet">
+      </div>
+      <div class="room-body">
+        <span class="room-kicker">Room one · 21 m²</span>
+        <h3>The lounge</h3>
+        <p>The <mark class="vw">lounge</mark> is the heart of my flat. By the window there is a soft grey
+        <mark class="vw">settee</mark> with two cushions, and in the corner stands my mustard-yellow
+        <mark class="vw">comfy chair</mark> — the best place in the world for a book and a cup of tea.
+        A thick beige <mark class="vw">carpet</mark> covers the floor, so the room stays warm and quiet even in January.</p>
+        <div class="room-tags"><span class="rtag">settee</span><span class="rtag">comfy chair</span><span class="rtag">carpet</span></div>
+      </div>
+    </article>
+
+    <article class="room reveal" id="room-kitchen">
+      <div class="room-media">
+        <span class="room-badge" style="background:var(--mustard)">02</span>
+        <img loading="lazy" src="https://image.qwenlm.ai/public_source/cb414d29-8955-44b0-a0b7-d46dadc7791c/1ac3cad84-8736-44d3-872a-b58a172a54e6.png" alt="The kitchen: a microwave, a steel sink and a chrome tap on a white counter">
+      </div>
+      <div class="room-body">
+        <span class="room-kicker">Room two · 9 m²</span>
+        <h3>The kitchen</h3>
+        <p>My kitchen is small but very smart. On the white counter there is a
+        <mark class="vw">microwave</mark> for quick breakfasts, a deep steel
+        <mark class="vw">sink</mark> and a shiny chrome <mark class="vw">tap</mark> that never drips.
+        Sage-green cabinets hide everything I don't need to see, so the room always looks calm and clean.</p>
+        <div class="room-tags"><span class="rtag">microwave</span><span class="rtag">sink</span><span class="rtag">tap</span></div>
+      </div>
+    </article>
+
+    <article class="room reveal" id="room-bathroom">
+      <div class="room-media">
+        <span class="room-badge" style="background:var(--blue)">03</span>
+        <img loading="lazy" src="https://image.qwenlm.ai/public_source/cb414d29-8955-44b0-a0b7-d46dadc7791c/1ca53f274-ca79-4cfe-b6f8-90b5f5c6f11b.png" alt="The bathroom: a glass shower, a round mirror and a rattan laundry basket">
+      </div>
+      <div class="room-body">
+        <span class="room-kicker">Room three · 5 m²</span>
+        <h3>The bathroom</h3>
+        <p>Clean, white and quiet. Behind the glass door there is a proper
+        <mark class="vw">shower</mark> with strong water pressure — my favourite way to start the morning.
+        In the corner a woven rattan <mark class="vw">laundry basket</mark> keeps the towels tidy,
+        and a round mirror makes the little room feel twice as big.</p>
+        <div class="room-tags"><span class="rtag">shower</span><span class="rtag">laundry basket</span></div>
+      </div>
+    </article>
+
+    <article class="room reveal" id="room-corner">
+      <div class="room-media">
+        <span class="room-badge" style="background:var(--clay)">04</span>
+        <img loading="lazy" src="https://image.qwenlm.ai/public_source/cb414d29-8955-44b0-a0b7-d46dadc7791c/1b8b975e7-31a6-4a66-b3f9-9705167f0c86.png" alt="The reading corner: a beige comfy chair with a knitted blanket and a floor lamp">
+      </div>
+      <div class="room-body">
+        <span class="room-kicker">Room four · 7 m²</span>
+        <h3>The reading corner</h3>
+        <p>In the bedroom I made my own little library corner: one more
+        <mark class="vw">comfy chair</mark> with a knitted blanket, a small round table, a tall floor lamp
+        and a green plant. The soft cream <mark class="vw">carpet</mark> under my feet makes even Monday mornings feel gentle.</p>
+        <div class="room-tags"><span class="rtag">comfy chair</span><span class="rtag">carpet</span><span class="rtag">lamp</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ WRITE-UP ══════════ -->
+<section id="writeup" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-tag">02 — The write-up</div>
+        <h2>My flat, in one story.</h2>
+      </div>
+      <p class="sec-note">The full description as one text — all nine target words are softly highlighted inside.</p>
+    </div>
+
+    <div class="essay-wrap">
+      <div class="essay reveal">
+        <h3>Home is where the carpet is</h3>
+        <p>My flat is not very big, but it is bright, warm and always tidy. It is on the fifth floor, and every morning the sun fills the <mark class="vw">lounge</mark> with soft golden light.</p>
+        <p>The lounge is my favourite room. There is a grey <mark class="vw">settee</mark> by the window and a mustard-yellow <mark class="vw">comfy chair</mark> in the corner, where I read in the evenings. A thick beige <mark class="vw">carpet</mark> covers the floor, so the room feels cosy even in winter.</p>
+        <p>The kitchen is small but smart. It has a white <mark class="vw">microwave</mark> on the counter, a deep steel <mark class="vw">sink</mark> and a shiny new <mark class="vw">tap</mark> that never drips.</p>
+        <p>The bathroom is clean and calm: a glass <mark class="vw">shower</mark>, a round mirror and a rattan <mark class="vw">laundry basket</mark> hidden in the corner. And in the bedroom there is another reading corner with a soft armchair and a lamp.</p>
+        <p>I love my flat because everything in it has its own place — and its own little story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <h5>Thanks for visiting.</h5>
+      <div class="foot-social">
+        <a href="https://github.com/nothing-codes/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.123-.3-.535-1.52.117-3.16 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3-.399s2.04.132 3 .399c2.292-1.552 3.3-1.23 3.3-1.23.653 1.64.24 2.86.118 3.16.768.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.62-5.476 5.92.43.37.824 1.102.824 2.22 0 1.602-.015 2.894-.015 3.287 0 .322.216.694.825.577C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@nothing_codes" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 · by nothing_codes</span> <!-- ✅ исправлено -->
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add("in"); revealObs.unobserve(en.target); }
+    });
+  },{threshold:.14});
+  revealEls.forEach(function(el){ revealObs.observe(el); });
+
+  /* ---------- active nav link ---------- */
+  var navLinks = document.querySelectorAll("#mainNav a");
+  var sectionIds = ["tour","writeup"];
+  var navObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      navLinks.forEach(function(lk){
+        lk.classList.toggle("active", lk.getAttribute("href") === "#" + en.target.id);
+      });
+    });
+  },{rootMargin:"-40% 0px -55% 0px"});
+  sectionIds.forEach(function(sid){
+    var sec = document.getElementById(sid);
+    if(sec) navObs.observe(sec);
+  });
+})();
+</script>
+</body>
+</html>
